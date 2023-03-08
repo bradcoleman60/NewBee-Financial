@@ -1,3 +1,5 @@
+// Apollo Version
+
 // const express = require('express');
 // const { ApolloServer } = require('apollo-server-express');
 // const path = require('path');
@@ -41,25 +43,7 @@
 //   startApolloServer(typeDefs, resolvers);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//////////////////////////////////////////////////////////////////////////
 
 
 
@@ -77,7 +61,7 @@ app.use(express.json());
 
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  res.sendFile(path.join(__dirname, '../client/public/index.html'));
 });
 
 
