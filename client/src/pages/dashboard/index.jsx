@@ -10,7 +10,7 @@ export default function Dashboard() {
     return (
 
         <section>
-            <h1>Username  </h1>
+            <h1>Dashboard </h1>
             
 
 
