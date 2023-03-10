@@ -12,13 +12,15 @@ const client = new mongodb(uri, { useNewUrlParser: true });
 // const connection = require("../config/connection");
 
 //Require and use  Models
-// import { CompanyData, TagData} from ('../models')
+// import { Company, TagData} from ('../models')
 
 //Require the cik_list object
-const cik = require("./cik_list");
+const jsonData = require("./companyInfo.json");
 
 //Create an array that contains all CIK numbers
-const cikArray = cik.map((item) => item.CIK);
+const infoArray = jsonData.map((item) => {
+  return {cik: item.CIK, name: item.NAME, ticker:item.TICKER, exchange: item.EXCHANGE}
+});
 
 //Endpoints to  SEC.GOV
 
@@ -120,9 +122,12 @@ const getNewData = async () => {
     const tableData = {};
 
     // Initialize the table data object with empty arrays for each cik
-    for (const cik of cikArray) {
-      tableData[cik] = {
-        cik: cik,
+    for (const item of infoArray) {
+      tableData[item.cik] = {
+        cik: item.cik,
+        name: item.name,
+        ticker: item.ticker,
+        exchange: item.exchange,
         revenue: null,
         revenue1: null,
         netIncome: null,
@@ -256,17 +261,18 @@ const getNewData = async () => {
     }
     //   console.log("table data: ",tableData)
       const dataArray = Object.values(tableData)
+      console.log(dataArray)
 
 
-      //Company Inform
-      const CompanyInfo = {}
+      // //Company Inform
+      // const CompanyInfo = {}
 
-      for (const item of cik) {
-        const { CIK: cik, NAME: name, TICKER: ticker, EXCHANGE: exchange } = item;
-        CompanyInfo[cik] = {cik, name, ticker, exchange };
-      }
+      // for (const item of jsonData) {
+      //   const { CIK: cik, NAME: name, TICKER: ticker, EXCHANGE: exchange } = item;
+      //   CompanyInfo[cik] = {cik, name, ticker, exchange };
+      // }
 
-      const companyInfoArray = Object.values(CompanyInfo)
+      // const companyInfoArray = Object.values(CompanyInfo)
       
     
     //Insert TableData amd  into Mongo DB
@@ -275,30 +281,30 @@ const getNewData = async () => {
     //Define Database
     const db = client.db("financeDB");
    
-    const companyData = db.collection("companyData");
+    const company = db.collection("company");
 
-      //Drop the companyData collection if it exists
+      //Drop the company collection if it exists
       try{
-      await companyData.drop();
-      console.log('CompanyData Drop')
+      await company.drop();
+      console.log('Company Drop')
       } catch (err)  {
-        console.log("CompanyData Drop Failed")
+        console.log("Company Drop Failed")
       }
          
-      await companyData.insertMany(dataArray);
-      console.log('CompanyData Added')
+      await company.insertMany(dataArray);
+      console.log('Company Added')
 
-      const companyInfo = db.collection('companyInfo');
+      // const companyInfo = db.collection('companyInfo');
 
-      try{
-      await companyInfo.drop();
-      console.log('CompanyInfo Drop')
-      }catch (err) {
-        console.log("CompanyInfo Drop Failed")
-      }
+      // try{
+      // await companyInfo.drop();
+      // console.log('CompanyInfo Drop')
+      // }catch (err) {
+      //   console.log("CompanyInfo Drop Failed")
+      // }
          
-      await companyInfo.insertMany(companyInfoArray);    
-      console.log('CompanyInfo Added')    
+      // await companyInfo.insertMany(companyInfoArray);    
+      // console.log('CompanyInfo Added')    
         
       
   } catch (error) {

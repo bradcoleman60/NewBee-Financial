@@ -1,5 +1,4 @@
-const cik = [
-  
+[  
     {
       "CIK": 1090872,
       "NAME": "AGILENT TECHNOLOGIES, INC.",
@@ -29053,6 +29052,3 @@ const cik = [
       "EXCHANGE": "Nasdaq"
     }
   ]
-    
-
-  module.exports = cik

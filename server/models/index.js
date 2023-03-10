@@ -1,6 +1,4 @@
 const User = require('./User');
-const TagName = require('./TagName');
-const CompanyData = require('./CompanyData');
-const Portfolio = require('./Portfolio');
+const Company = require('./Company');
 
-module.exports = { User, TagName, CompanyData, Portfolio };
+module.exports = { User, Company };
