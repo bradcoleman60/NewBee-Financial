@@ -50,7 +50,6 @@
 const path = require('path');
 
 const express = require('express');
-const db = require('./config/connection');
 
 
 const PORT = process.env.PORT || 3050;
@@ -60,12 +59,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
+app.use("/api", api)
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/public/index.html'));
 });
 
 
 db.once('open', () => {
+  
   app.listen(PORT, () => {
     console.log(`FINANCE APP IS RUNNING ON PORT => http://localhost:${PORT}`);
   });
