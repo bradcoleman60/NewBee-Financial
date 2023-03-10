@@ -110,11 +110,11 @@ const getNewData = async () => {
       const dataCurrentLiabilities = responseCurrentLiabilities.data.data;
 
     //Income Tax Paid
-       const responseTaxesPaid = await axios.get(urlIncomeTax);
+      const responseTaxesPaid = await axios.get(urlIncomeTax);
       const dataTaxesPaid = responseTaxesPaid.data.data;
 
     //Income Tax Paid1
-       const responseTaxesPaid1 = await axios.get(urlIncomeTax1);
+      const responseTaxesPaid1 = await axios.get(urlIncomeTax1);
       const dataTaxesPaid1 = responseTaxesPaid1.data.data;
 
     const tableData = {};
@@ -122,6 +122,7 @@ const getNewData = async () => {
     // Initialize the table data object with empty arrays for each cik
     for (const cik of cikArray) {
       tableData[cik] = {
+        cik: cik,
         revenue: null,
         revenue1: null,
         netIncome: null,
@@ -254,18 +255,60 @@ const getNewData = async () => {
       }
     }
     //   console.log("table data: ",tableData)
+      const dataArray = []
 
-    //Send to Mongo DB - financeDB
-
-    client.connect((err) => {
+      dataArray.push(tableData)
+    
+    //Insert TableData into Mongo DB
+    client.connect(async (err) => {
+      
       const collection = client.db("financeDB").collection("companyData");
 
-      collection.insertOne(tableData, (err, result) => {
-        if (err) throw err;
-        console.log("Data inserted successfully");
-        client.close();
-      });
+      //Drop the companyData collection if it exists
+      await collection.drop();
+
+      dataArray.forEach((el) => {
+        collection.insertOne(el, (err, result) => {
+          if (err) throw err;
+          console.log("DATA ENTERED INTO DB");
+          client.close();
+          
+        })
+      })
+      // collection.insertMany(dataArray, (err, result) => {
+      //   if (err) throw err;
+      //   console.log("Data inserted successfully");
+      //   client.close();
+      // });
     });
+
+    //Insert Company Information Table (CIK, NAME, TICKER, EXCHANGE) 
+    const CompanyInfo = {}
+
+    for (const item of cik) {
+      const { CIK, NAME, TICKER, EXCHANGE } = item;
+      CompanyInfo[CIK] = {NAME, TICKER, EXCHANGE };
+    }
+
+    const companyInfoArray = []
+
+    companyInfoArray.push(CompanyInfo)
+
+    client.connect(async (err) => {
+      const collection = client.db("financeDB").collection('companyInfo');
+
+      //Drop the companyInfo collection if it exists
+      await collection.drop();
+
+      collection.insertMany(companyInfoArray, (err, result) => {
+        if (err) throw err;
+        console.log("Company Info Insert Successfully");
+        client.close()
+      })
+    })
+
+
+
   } catch (error) {
     console.error(error);
     res.status(500).send(`An error occurred: ${error.message}`);
@@ -273,7 +316,6 @@ const getNewData = async () => {
 };
 
 getNewData();
-
 
 
 
