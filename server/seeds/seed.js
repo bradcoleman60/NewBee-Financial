@@ -9,7 +9,7 @@ const uri = "mongodb://localhost/financeDB";
 const client = new mongodb(uri, { useNewUrlParser: true });
 
 //Connect to DB
-const connection = require("../config/connection");
+// const connection = require("../config/connection");
 
 //Require and use  Models
 // import { CompanyData, TagData} from ('../models')
@@ -255,63 +255,58 @@ const getNewData = async () => {
       }
     }
     //   console.log("table data: ",tableData)
-      const dataArray = []
+      const dataArray = Object.values(tableData)
 
-      dataArray.push(tableData)
-    
-    //Insert TableData into Mongo DB
-    client.connect(async (err) => {
+
+      //Company Inform
+      const CompanyInfo = {}
+
+      for (const item of cik) {
+        const { CIK: cik, NAME: name, TICKER: ticker, EXCHANGE: exchange } = item;
+        CompanyInfo[cik] = {cik, name, ticker, exchange };
+      }
+
+      const companyInfoArray = Object.values(CompanyInfo)
       
-      const collection = client.db("financeDB").collection("companyData");
+    
+    //Insert TableData amd  into Mongo DB
+    await client.connect();
+
+    //Define Database
+    const db = client.db("financeDB");
+   
+    const companyData = db.collection("companyData");
 
       //Drop the companyData collection if it exists
-      await collection.drop();
+      try{
+      await companyData.drop();
+      console.log('CompanyData Drop')
+      } catch (err)  {
+        console.log("CompanyData Drop Failed")
+      }
+         
+      await companyData.insertMany(dataArray);
+      console.log('CompanyData Added')
 
-      dataArray.forEach((el) => {
-        collection.insertOne(el, (err, result) => {
-          if (err) throw err;
-          console.log("DATA ENTERED INTO DB");
-          client.close();
-          
-        })
-      })
-      // collection.insertMany(dataArray, (err, result) => {
-      //   if (err) throw err;
-      //   console.log("Data inserted successfully");
-      //   client.close();
-      // });
-    });
+      const companyInfo = db.collection('companyInfo');
 
-    //Insert Company Information Table (CIK, NAME, TICKER, EXCHANGE) 
-    const CompanyInfo = {}
-
-    for (const item of cik) {
-      const { CIK, NAME, TICKER, EXCHANGE } = item;
-      CompanyInfo[CIK] = {NAME, TICKER, EXCHANGE };
-    }
-
-    const companyInfoArray = []
-
-    companyInfoArray.push(CompanyInfo)
-
-    client.connect(async (err) => {
-      const collection = client.db("financeDB").collection('companyInfo');
-
-      //Drop the companyInfo collection if it exists
-      await collection.drop();
-
-      collection.insertMany(companyInfoArray, (err, result) => {
-        if (err) throw err;
-        console.log("Company Info Insert Successfully");
-        client.close()
-      })
-    })
-
-
-
+      try{
+      await companyInfo.drop();
+      console.log('CompanyInfo Drop')
+      }catch (err) {
+        console.log("CompanyInfo Drop Failed")
+      }
+         
+      await companyInfo.insertMany(companyInfoArray);    
+      console.log('CompanyInfo Added')    
+        
+      
   } catch (error) {
     console.error(error);
-    res.status(500).send(`An error occurred: ${error.message}`);
+   
+  } finally {
+
+  client.close()
   }
 };
 
