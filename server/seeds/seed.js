@@ -262,18 +262,6 @@ const getNewData = async () => {
     //   console.log("table data: ",tableData)
       const dataArray = Object.values(tableData)
       
-
-
-      // //Company Inform
-      // const CompanyInfo = {}
-
-      // for (const item of jsonData) {
-      //   const { CIK: cik, NAME: name, TICKER: ticker, EXCHANGE: exchange } = item;
-      //   CompanyInfo[cik] = {cik, name, ticker, exchange };
-      // }
-
-      // const companyInfoArray = Object.values(CompanyInfo)
-      
     
     //Insert TableData amd  into Mongo DB
     await client.connect();
@@ -294,17 +282,21 @@ const getNewData = async () => {
       await company.insertMany(dataArray);
       console.log('Company Added')
 
-      // const companyInfo = db.collection('companyInfo');
+      //Add user seed
+      const user = db.collection('user');
 
-      // try{
-      // await companyInfo.drop();
-      // console.log('CompanyInfo Drop')
-      // }catch (err) {
-      //   console.log("CompanyInfo Drop Failed")
-      // }
+      try{
+      await user.drop();
+      console.log('user Drop')
+      }catch (err) {
+        console.log("user Drop Failed")
+      }
          
-      // await companyInfo.insertMany(companyInfoArray);    
-      // console.log('CompanyInfo Added')    
+      await user.insertMany([
+        {username: 'Mike', email: 'mike@gmail.com', password: 'password'},
+        {username: 'Pam', email: 'pam@gmail.com', password: 'password'}
+      ]);    
+      console.log('User Added')    
         
       
   } catch (error) {
