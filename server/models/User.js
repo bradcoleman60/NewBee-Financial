@@ -24,15 +24,16 @@ const userSchema = new Schema(
     // set savedCompanies to be an array of data that adheres to the companySchema
     savedCompanies: [company.schema],
   },
+  {
+    collection: 'user'
+   },
   // set this to use virtual below
   {
     toJSON: {
       virtuals: true,
     },
   },
-  {
-    collection: 'user'
-   }
+  
 
 );
 

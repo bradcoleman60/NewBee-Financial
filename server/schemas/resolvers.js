@@ -7,6 +7,9 @@ const resolvers = {
       const params = _id ? { _id } : {};
       return User.find(params);
     },
+    users: async () => {
+      return await User.find()
+    },
     company: async () => {
         return await Company.find();
     }
