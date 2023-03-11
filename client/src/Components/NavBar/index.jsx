@@ -23,7 +23,7 @@ export default function Home() {
   function logIn() {
     //mutation to create new login session
   }
-  function switchToLogin() {
+  function switchToRegister() {
     //hide login modal and show new user modal
     hideModal()
     showModal()

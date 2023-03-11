@@ -261,7 +261,7 @@ const getNewData = async () => {
     }
     //   console.log("table data: ",tableData)
       const dataArray = Object.values(tableData)
-      console.log(dataArray)
+      
 
 
       // //Company Inform
