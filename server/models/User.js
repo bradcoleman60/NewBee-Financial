@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 // import schema from Book.js
-const companySchema = require('./Company');
+const company = require('./Company');
 
 const userSchema = new Schema(
   {
@@ -22,14 +22,18 @@ const userSchema = new Schema(
       required: true,
     },
     // set savedCompanies to be an array of data that adheres to the companySchema
-    savedCompanies: [companySchema],
+    savedCompanies: [company.schema],
   },
   // set this to use virtual below
   {
     toJSON: {
       virtuals: true,
     },
-  }
+  },
+  {
+    collection: 'user'
+   }
+
 );
 
 // hash user password

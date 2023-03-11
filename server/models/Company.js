@@ -1,18 +1,25 @@
 const { Schema, model } = require("mongoose");
 
-const schema = new Schema({
+const companySchema = new Schema({
   cik: {
     type: Number,
-    required: true,
-    unique: true,
+    // required: true,
+    // unique: true,
   },
   name: {
     type: String,
-    required: true,
-    unique: true,
+    // required: true,
+    // unique: true,
   },
-  ticker: { type: String, required: true, unique: true },
-  exchange: { type: String, required: true },
+  ticker: { 
+    type: String, 
+    // required: true, 
+    // unique: true 
+  },
+  exchange: { 
+    type: String, 
+    // required: true
+   },
   revenue: String,
   revenue1: String,
   netIncome: String,
@@ -25,8 +32,12 @@ const schema = new Schema({
   currentLiabilities: String,
   taxesPaid: String,
   taxesPaid1: String,
-});
+},
+ {
+  collection: 'company'
+ }
+);
 
-const Company = model("Company", schema);
+const Company = model("Company", companySchema);
 
 module.exports = Company;
