@@ -1,45 +1,76 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import Home from './pages/home'
-import Dashboard from './pages/dashboard'
-import Learn from './pages/learn'
-import NotFound from './pages/notFound'
-import NavBar from './Components/NavBar'
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
-// const client = new ApolloClient({
-//   uri: '/graphql',
-//   cache: new InMemoryCache(),
-// });
+import Home from './pages/Home';
+import Dashboard from './pages/dashboard';
+import Learn from './pages/learn';
+import NotFound from './pages/notFound';
+import Login from './pages/login';
+import Register from './pages/register';
+import Nav from './components/NavBar';
+// import { StoreProvider } from './utils/GlobalState';
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
-    // <ApolloProvider client={client}>
- 
+    <ApolloProvider client={client}>
       <Router>
-         <NavBar/>
         <div>
-          <Routes>
-            <Route 
-              path="/" 
-              element={<Home />}
-            />
-            <Route 
-              path="/dashboard" 
-              element={<Dashboard />}
-            />
-            <Route 
-              path="/learn" 
-              element={<Learn />}
-            />
-            <Route 
-              path="*"
-              element={<NotFound />}
-            />
-          </Routes>
+            <Nav />
+            <Routes>
+              <Route 
+                path="/" 
+                element={<Home />} 
+              />
+              <Route 
+                path="/login" 
+                element={<Login />} 
+              />
+              <Route 
+                path="/register" 
+                element={<Register />}  
+              />
+              <Route 
+                path="/learn" 
+                element={<Learn />}  
+              />
+              <Route 
+                path="/dashboard" 
+                element={<Dashboard />}  
+              />
+              <Route 
+                path="*" 
+                element={<NotFound />} 
+              />
+            </Routes>
         </div>
       </Router>
-    // </ApolloProvider>
+    </ApolloProvider>
   );
 }
 
