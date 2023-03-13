@@ -42,23 +42,32 @@ const resolvers = {
         return { token, user };
       },
     //Adds a company to a User's list of companies (note this is an update to User Model)
-    addCompany: async (parent, { _id, cik }) => {
-      const user = await User.findOneAndUpdate(
-        { _id },
-        { $addToSet: {cik: cik} },
+    addCompany: async (parent, { company }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in to add a company');
+      }
+    
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { savedCompanies: company } },
         { new: true }
-      );
-      return user;
-    },
+      ).populate('savedCompanies');
+    
+      return updatedUser;
+    },    
     //Deletes a company from a User's list of companies (note this is an update to the User Model)
-    removeCompany: async (parent, { _id, cik }) => {
-        const user = await User.findOneAndUpdate(
-          { _id },
-          { $pull: {cik: cik} },
+    removeCompany: async (parent, { cik }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedCompanies: { cik } } },
           { new: true }
-        );
-        return user;
-      },
+        ).populate('savedCompanies');
+        return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in to remove a company.');
+    }
+    
   },
 };
 
