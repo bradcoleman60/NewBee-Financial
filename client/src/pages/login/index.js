@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 import Dashboard from '../dashboard';
 
 const Login = () => {
@@ -25,22 +27,34 @@ const Login = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </label>
-      <br />
-      <button type="submit" disabled={loading}>
-        {loading ? 'Loading...' : 'Login'}
-      </button>
-      {error && <p>{error.message}</p>}
-    </form>
+    <div className="container my-1">
+      <Link to="/login">← Go to Login</Link>
+
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="username">Username:</label>
+          <input
+            placeholder="Username"
+            name="username"
+            type="text"
+            id="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="pwd">Password:</label>
+          <input
+            placeholder="******"
+            name="password"
+            type="text"
+            id="pwd"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 };
 
