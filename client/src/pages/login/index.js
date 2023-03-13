@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { LOGIN_MUTATION } from '../../utils/mutations';
+import { LOGIN_USER } from '../../utils/mutations';
 import Dashboard from '../dashboard';
 
 const Login = () => {
@@ -8,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [login, { loading, error }] = useMutation(LOGIN_MUTATION, {
+  const [login, { loading, error }] = useMutation(LOGIN_USER , {
     onCompleted: (data) => {
       sessionStorage.setItem('token', data.login.token);
       setIsLoggedIn(true);

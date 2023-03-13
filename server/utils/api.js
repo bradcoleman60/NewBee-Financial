@@ -17,8 +17,7 @@ const fetchTickerData = (el) => {
     url: 'https://yh-finance.p.rapidapi.com/stock/v2/get-summary',
     params: {symbol: el, region: 'US'},
     headers: {
-      // 'X-RapidAPI-Key': 'aef2874490mshcdc643d40f36d95p1f1416jsn10af74644bac',
-      'X-RapidAPI-Key': process.env.API_KEY,
+     'X-RapidAPI-Key': process.env.API_KEY,
       'X-RapidAPI-Host': 'yh-finance.p.rapidapi.com'
     }
   };

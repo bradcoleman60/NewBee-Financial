@@ -75,6 +75,7 @@ export default function Companies() {
         renderItem={(item, isHighlighted) => (
           <div
             key={item}
+            id={item.cik}
             className={`dropdown-item ${isHighlighted ? 'active' : ''}`}
           >
             {item}
