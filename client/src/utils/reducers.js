@@ -13,13 +13,13 @@ export const reducer = (state, action) => {
     case SAVE_COMPANY:
       return {
         ...state,
-        savedCompanies: [...action.companies],
+        savedCompanies: [...state.savedCompanies, action.company],
       };
-      case REMOVE_COMPANY:
-        return {
-          ...state,
-          savedCompanies: [...action.companies],
-        };
+    case REMOVE_COMPANY:
+      return {
+        ...state,
+        savedCompanies: state.savedCompanies.filter((comp) => comp._id !== action.company._id),
+      };
         case UPDATE_METRICS:
           return {
             ...state,
