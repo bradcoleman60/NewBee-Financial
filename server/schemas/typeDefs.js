@@ -36,17 +36,18 @@ const typeDefs = gql`
     type Query {
         users: [User]
         user (_id: String): User
-        company: [Company]
+        companies: [Company]
+       
     }
 
     type Mutation {
         createUser(username: String!, email: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
         
-        addCompany(userId: ID!, cik: Int!): User
+        addCompany(_id: String!, cik: Int!): User
         removeCompany(userId: ID!, cik: Int!): User
         
-        updateUser(cik: Int!): User
+        updateUser(_id: Int!): User
         deleteUser(_id: String!) : User
     }
 `
