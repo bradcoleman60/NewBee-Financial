@@ -3,9 +3,9 @@ import { useQuery } from '@apollo/client';
 import Autocomplete from 'react-autocomplete';
 
 import { QUERY_COMPANY } from '../../utils/queries';
-// import './style.css'
 
-import './style.css'
+
+// import './style.css'
 export default function Companies() {
   const [selectedOption, setSelectedOption] = useState('');
   const [filteredOptions, setFilteredOptions] = useState([]);
@@ -63,7 +63,7 @@ export default function Companies() {
         renderMenu={(items) => (
           <div className="dropdown-menu">
             {items.map((item) => (
-              <div key={item} className="dropdown-item"
+              <div key={item._id} className="dropdown-item"
               onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
