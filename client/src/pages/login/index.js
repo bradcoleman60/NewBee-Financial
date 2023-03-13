@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_MUTATION } from '../../utils/mutations';
+import Dashboard from '../dashboard';
 
 const Login = () => {
   const [username, setUsername] = useState('');

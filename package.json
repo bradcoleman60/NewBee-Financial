@@ -8,7 +8,6 @@
     "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "concurrently \"cd server && npm i\" \"cd client && npm i\"",
     "seed": "cd server && npm run seed",
-    "seed1": "node TEST_FOLDER/test_company_mongo",
     "build": "cd client && npm run build"
   },
   "author": "",
