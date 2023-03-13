@@ -11,9 +11,11 @@ const resolvers = {
     users: async () => {
       return await User.find()
     },
-    company: async () => {
+    companies: async () => {
+      console.log("from the back end")
         return await Company.find();
-    }
+        
+    } 
   },
   Mutation: {
     //Create a User upon new registration 
@@ -69,6 +71,7 @@ const resolvers = {
     }
     
   },
+  
 };
 
 module.exports = resolvers;

@@ -27,7 +27,7 @@ const typeDefs = gql`
     taxesPaid: String
     taxesPaid1: String
   }
-
+////////////////////////////////////////
   type Auth {
     token: ID!
     user: User
@@ -51,7 +51,26 @@ const typeDefs = gql`
     taxesPaid: String
     taxesPaid1: String
   }
+  //////////////////////////////////////////////
+  //  type Query {
+  //      users: [User]
+  //      user (_id: String): User
+  //      companies: [Company]
+       
+  //  }
 
+  //  type Mutation {
+   //     createUser(username: String!, email: String!, password: String!): Auth
+   //     login(username: String!, password: String!): Auth
+        
+   //     addCompany(_id: String!, cik: Int!): User
+   //     removeCompany(userId: ID!, cik: Int!): User
+        
+    //    updateUser(_id: Int!): User
+    //    deleteUser(_id: String!) : User
+ //   }
+//`
+////////////////////////////////////////////////////////////
   type Query {
     users: [User]
     user(_id: ID!): User
