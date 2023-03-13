@@ -63,7 +63,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     updateUser(_id: ID!, username: String, email: String, password: String): User
     deleteUser(_id: ID!): User
-    addCompany(company: CompanyInput!): User
+    saveCompany(company: CompanyInput!): User
     removeCompany(cik: Int!): User
   }
   

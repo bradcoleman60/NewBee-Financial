@@ -42,7 +42,7 @@ const resolvers = {
         return { token, user };
       },
     //Adds a company to a User's list of companies (note this is an update to User Model)
-    addCompany: async (parent, { company }, context) => {
+    saveCompany: async (parent, { company }, context) => {
       if (!context.user) {
         throw new AuthenticationError('You need to be logged in to add a company');
       }

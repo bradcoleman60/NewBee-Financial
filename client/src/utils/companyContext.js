@@ -1,10 +1,10 @@
 import React, { createContext, useContext } from "react";
-// import { useCompanyReducer } from './reducers'
+import { useCompanyReducer } from './reducers';
 
 const CompanyContext = createContext();
 const { Provider } = CompanyContext;
 
-const StoreProvider = ({ value = [], ...props }) => {
+const CompanyProvider = ({ children }) => {
   const [state, dispatch] = useCompanyReducer({
     revenue: null,
     revenue1: null,
@@ -20,7 +20,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     taxesPaid1: null
   });
 
-  return <Provider value={[state, dispatch]} {...props} />;
+  return <Provider value={{ state, dispatch }}>{children}</Provider>;
 };
 
 const useCompanyContext = () => {
