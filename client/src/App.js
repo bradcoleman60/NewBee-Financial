@@ -14,6 +14,7 @@ import Learn from './pages/learn';
 import NotFound from './pages/notFound';
 import Login from './pages/login';
 import Register from './pages/register';
+import Companies from './Components/Companies';
 import Nav from './Components/NavBar';
 // import { StoreProvider } from './utils/GlobalState';
 
@@ -54,6 +55,10 @@ function App() {
               <Route 
                 path="/register" 
                 element={<Register />}  
+              />
+              <Route 
+                path="/company" 
+                element={<Companies />}  
               />
               <Route 
                 path="/learn" 
