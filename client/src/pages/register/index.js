@@ -6,18 +6,18 @@ import { CREATE_USER } from '../../utils/mutations';
 
 function Register(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
-  const [addUser] = useMutation(CREATE_USER);
+  const [createUser] = useMutation(CREATE_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const mutationResponse = await addUser({
+    const mutationResponse = await createUser({
       variables: {
         email: formState.email,
         password: formState.password,
         username: formState.username,
       },
     });
-    const token = mutationResponse.data.addUser.token;
+    const token = mutationResponse.data.createUser.token;
     Auth.login(token);
   };
 
