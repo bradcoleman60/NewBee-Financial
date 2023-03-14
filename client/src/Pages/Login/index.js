@@ -27,7 +27,15 @@ const Login = () => {
   // }
 
   const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error }] = useMutation(LOGIN_USER);
+  // const [login, { error }] = useMutation(LOGIN_USER);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [login, { loading, error }] = useMutation(LOGIN_USER, {
+    onCompleted: (data) => {
+      sessionStorage.setItem('token', data.login.token);
+      setIsLoggedIn(true);
+    },
+  });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -40,7 +48,14 @@ const Login = () => {
     } catch (e) {
       console.log(e);
     }
+    finally{
+      window.location.replace('/dashboard')
+    }
   };
+
+  // if (isLoggedIn) {
+  //     return <Dashboard />;
+  //   }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -84,6 +99,7 @@ const Login = () => {
           </div>
         ) : null}
         <div className="flex-row flex-end">
+          {/* <Link to="/dashboard"><button type="submit" onSubmit={handleFormSubmit}>Submit</button></Link> */}
           <button type="submit">Submit</button>
         </div>
       </form>
