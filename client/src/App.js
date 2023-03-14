@@ -8,15 +8,15 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import Home from './pages/home';
-import Dashboard from './pages/dashboard';
-import Learn from './pages/learn';
-import NotFound from './pages/notFound';
-import Login from './pages/login';
-import Register from './pages/register';
+import Home from './Pages/Home';
+import Dashboard from './Pages/Dashboard';
+import Learn from './Pages/Learn';
+import NotFound from './Pages/NotFound';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 import Companies from './Components/Companies';
 import Nav from './Components/NavBar';
-// import { StoreProvider } from './utils/GlobalState';
+ import { CompanyProvider } from './utils/companyContext.js';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -42,6 +42,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
+          <CompanyProvider>
             <Nav />
             <Routes>
               <Route 
@@ -73,6 +74,7 @@ function App() {
                 element={<NotFound />} 
               />
             </Routes>
+            </CompanyProvider>
         </div>
       </Router>
     </ApolloProvider>

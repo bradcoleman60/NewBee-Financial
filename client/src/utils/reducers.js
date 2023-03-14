@@ -7,7 +7,11 @@ COMPARE_METRICS,
 COMPARE_ARTICLES
 
 } from "./actions";
-
+const dashboardState = {
+  savedCompanies: [],
+  metrics: [],
+  articles: []
+};
 export const reducer = (state, action) => {
   switch (action.type) {
     case SAVE_COMPANY:
@@ -40,6 +44,6 @@ export const reducer = (state, action) => {
   }
 };
 
-export function useCompanyReducer(initialState) {
+export function useCompanyReducer(initialState = dashboardState) {
   return useReducer(reducer, initialState)
 }
