@@ -10,15 +10,22 @@ function Register(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const mutationResponse = await createUser({
-      variables: {
-        email: formState.email,
-        password: formState.password,
-        username: formState.username,
-      },
-    });
-    const token = mutationResponse.data.createUser.token;
-    Auth.login(token);
+    try{
+      const mutationResponse = await createUser({
+        variables: {
+          email: formState.email,
+          password: formState.password,
+          username: formState.username,
+        },
+      });
+      const token = mutationResponse.data.createUser.token;
+      Auth.login(token);
+    }catch (e) {
+      console.log(e);
+    }
+    finally{
+      window.location.replace('/dashboard')
+    } 
   };
 
   const handleChange = (event) => {
