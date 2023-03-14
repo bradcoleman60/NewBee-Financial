@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
-import Dashboard from '../dashboard';
+import Dashboard from '../Dashboard';
 
 const Login = () => {
   // const [username, setUsername] = useState('');

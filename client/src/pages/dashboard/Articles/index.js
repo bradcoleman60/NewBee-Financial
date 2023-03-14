@@ -1,5 +1,5 @@
 import React from "react";
-import Company from "../Company";
+import Company from "./Company";
 import './style.css'
 
 export default function Data(props) {
