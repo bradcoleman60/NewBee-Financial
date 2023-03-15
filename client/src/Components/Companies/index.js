@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import Autocomplete from 'react-autocomplete';
 
 import { QUERY_COMPANY } from '../../utils/queries';
-
+import { SAVE_COMPANY } from '../../utils/mutations';
+import Auth from "../../utils/auth"
 
 // import './style.css'
 export default function Companies() {
-  const [selectedOption, setSelectedOption] = useState('');
-  const [filteredOptions, setFilteredOptions] = useState([]);
+  const [ selectedOption, setSelectedOption] = useState('');
+  const [ filteredOptions, setFilteredOptions] = useState([]);
+  const { loading, error, data } = useQuery(QUERY_COMPANY);
+
+  const [ saveCompany] = useMutation(SAVE_COMPANY);
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
@@ -21,13 +25,15 @@ export default function Companies() {
       );
 
     setFilteredOptions(filteredOptions);
+
+    // console.log("filteredOptions ===> ", filteredOptions)
   };
 
   const handleSelect = (value) => {
     setSelectedOption(value);
   };
 
-  const { loading, error, data } = useQuery(QUERY_COMPANY);
+  
 
   if (loading) {
     return <div>Loading...</div>;
@@ -44,6 +50,38 @@ export default function Companies() {
   const handleMouseLeave = (event) => {
     event.target.classList.remove('active');
   };
+
+  
+
+  const saveCompanyToUser = (event) => {
+    event.preventDefault();
+    console.log("the company selected by user : ", selectedOption)
+    data.companies.forEach(async el =>  {
+      if (selectedOption === el.name ){
+        const { __typename, _id, ...newObj} = el
+
+      console.log("data: ", el)
+      console.log("NEW OBJECT THIS IS IT ====>>>: ", newObj)
+      console.log("User_Id : ", Auth.getProfile())
+      const user = Auth.getProfile()
+      console.log("the Actual user _id: ", user.data._id)
+       try{
+        const { data } = await saveCompany({ 
+          variables: { 
+            _id: user.data._id, 
+            company: newObj 
+          } 
+        });
+        // console.log("data right after saveCompanyToUser", data)
+       }catch(err)
+       {
+        // console.log("error fom client", err)
+       }
+
+    }
+  });
+
+  }
 
   return (
     <div>
@@ -62,8 +100,8 @@ export default function Companies() {
            )}
         renderMenu={(items) => (
           <div className="dropdown-menu">
-            {items.map((item) => (
-              <div key={item._id} className="dropdown-item"
+            {items.map((item,i) => (
+              <div key={i} className="dropdown-item"
               onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
@@ -74,8 +112,8 @@ export default function Companies() {
         )}
         renderItem={(item, isHighlighted) => (
           <div
-            key={item}
-            id={item.cik}
+            // key={item._id}
+            // id={item.cik}
             className={`dropdown-item ${isHighlighted ? 'active' : ''}`}
           >
             {item}
@@ -84,7 +122,7 @@ export default function Companies() {
         )}
         />
         <div>
-          <button>
+          <button onClick={saveCompanyToUser}>
           Submit
           </button>
           </div>

@@ -51,10 +51,15 @@ export const DELETE_USER = gql`
   }
 `;
 
-const SAVE_COMPANY = gql`
-  mutation SaveCompany($company: CompanyInput!) {
-    saveCompany(company: $company) {
-      _id
+export const SAVE_COMPANY = gql`
+  mutation SaveCompany(
+    $_id: ID!, 
+    $company: CompanyInput!
+    ){
+    saveCompany (
+      _id: $_id, 
+      company: $company
+      ) {
       savedCompanies {
         _id
         cik
