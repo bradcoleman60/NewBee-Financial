@@ -46,10 +46,11 @@ const resolvers = {
     //Adds a company to a User's list of companies (note this is an update to User Model)
     saveCompany: async (parent, { _id, company }, context) => {
 
-      // console.log("entered savedCompany")
-      // console.log("company ====>", company) 
-      // console.log("context =====> ", _id) 
+      console.log("entered savedCompany")
+      console.log("company ====>", company) 
+      console.log("context =====> ", _id) 
       // console.log("context ====> ", context)
+      console.log("context.user ====> ", context.user)
       
       if (!context.user) {
         throw new AuthenticationError('You need to be logged in to add a company');
@@ -57,7 +58,7 @@ const resolvers = {
     
       const updatedUser = await User.findOneAndUpdate(
         // {_id: context._Id}, 
-        {_id: context._Id}, 
+        {_id}, 
         { $push: { savedCompanies: company } },
         { new: true }
       ).populate('savedCompanies');
