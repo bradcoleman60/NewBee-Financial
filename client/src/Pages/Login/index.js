@@ -6,26 +6,7 @@ import Auth from '../../utils/auth';
 import Dashboard from '../Dashboard';
 
 const Login = () => {
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // const [login, { loading, error }] = useMutation(LOGIN_USER, {
-  //   onCompleted: (data) => {
-  //     sessionStorage.setItem('token', data.login.token);
-  //     setIsLoggedIn(true);
-  //   },
-  // });
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   login({ variables: { username, password } });
-  // };
-
-  // if (isLoggedIn) {
-  //   return <Dashboard />;
-  // }
-
+  
   const [formState, setFormState] = useState({ email: '', password: '' });
   // const [login, { error }] = useMutation(LOGIN_USER);
   const [isLoggedIn, setIsLoggedIn] = useState(false);

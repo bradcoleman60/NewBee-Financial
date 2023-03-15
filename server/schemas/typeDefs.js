@@ -34,22 +34,23 @@ const typeDefs = gql`
   }
 
   input CompanyInput {
-    cik: Int
-    name: String
-    ticker: String
-    exchange: String
-    revenue: String
-    revenue1: String
-    netIncome: String
     cash: String
     cashFlow: String
     cashFlow1: String
-    eps: Float
-    eps1: Float
+    cik: Int
     currentAsset: String
     currentLiabilities: String
+    eps: Float
+    eps1: Float
+    exchange: String
+    name: String
+    netIncome: String
+    revenue: String
+    revenue1: String
     taxesPaid: String
     taxesPaid1: String
+    ticker: String
+    
   }
   
   type Query {
@@ -63,7 +64,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     updateUser(_id: ID!, username: String, email: String, password: String): User
     deleteUser(_id: ID!): User
-    saveCompany(company: CompanyInput!): User
+    saveCompany(_id: ID!, company: CompanyInput!): User
     removeCompany(cik: Int!): User
   }
   
