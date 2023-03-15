@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
-import Dashboard from '../Dashboard';
 
 const Login = () => {
   
   const [formState, setFormState] = useState({ email: '', password: '' });
-  // const [login, { error }] = useMutation(LOGIN_USER);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [login, { loading, error }] = useMutation(LOGIN_USER, {
@@ -34,10 +32,6 @@ const Login = () => {
     }
   };
 
-  // if (isLoggedIn) {
-  //     return <Dashboard />;
-  //   }
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -59,7 +53,6 @@ const Login = () => {
             name="email"
             type="email"
             id="email"
-            // onChange={(e) => setUsername(e.target.value)}
             onChange={handleChange}
           />
         </div>
@@ -70,7 +63,6 @@ const Login = () => {
             name="password"
             type="password"
             id="pwd"
-            // onChange={(e) => setPassword(e.target.value)}
             onChange={handleChange}
           />
         </div>
@@ -80,7 +72,6 @@ const Login = () => {
           </div>
         ) : null}
         <div className="flex-row flex-end">
-          {/* <Link to="/dashboard"><button type="submit" onSubmit={handleFormSubmit}>Submit</button></Link> */}
           <button type="submit">Submit</button>
         </div>
       </form>
