@@ -1,11 +1,15 @@
+
+import React from "react";
 import Image from "./images/learnToinvest.jpeg";
+import Logo from "./images/newBee.jpg";
+import './style.css';
 
 export default function Home() {
     return (
       <section>
         <h1>Welcome!</h1>
         <div className="flex-row">
-          <p style={{ flex: 1 }}>
+          <p style={{ flex: 1, }}>
             We're here to help beginner investors better understand some of the
             key metrics that are used to gauge the financial health and, whether
             or not the 'Street' is more 'Bullish' or 'Bearish' about company so
@@ -13,6 +17,7 @@ export default function Home() {
             into the world of investing!!
           </p>
           <img src={Image} alt="invest-graph" style={{ order: 2, width: '50%' }} />
+          <img src={Logo} alt="newBee" style={{ order: 2, width: '50%' }} />
         </div>
       </section>
     );
