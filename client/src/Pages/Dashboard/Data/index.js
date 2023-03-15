@@ -1,5 +1,6 @@
 import React from "react";
 import Company from "./Company";
+import { Link } from "react-router-dom";
 import './style.css'
 
 export default function Data(props) {
@@ -47,6 +48,10 @@ export default function Data(props) {
       cash={company.cash}
     />
   ));
+  function handleClick (){
+    window.location.replace('./learn')
+
+  }
 
   return (
     <section>
@@ -54,11 +59,11 @@ export default function Data(props) {
       <table className="financial-table">
         <thead>
           <tr>
-            <th>Company</th>
-            <th>Revenue</th>
-            <th>Cash Flow</th>
-            <th>Net Earnings</th>
-            <th>Cash</th>
+            <th onClick = {handleClick}>Company</th>
+            <th onClick = {handleClick}> Revenue </th>
+            <th onClick = {handleClick}>Cash Flow</th>
+            <th onClick = {handleClick}>Net Earnings</th>
+            <th onClick = {handleClick}>Cash</th>
           </tr>
         </thead>
         <tbody>
