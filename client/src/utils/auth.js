@@ -1,18 +1,14 @@
 import decode from 'jwt-decode';
 
 class AuthService {
-  // Decodes the JWT token stored in local storage and returns the user profile data.
   getProfile() {
     return decode(this.getToken());
   }
-
   loggedIn() {
     // Checks if there is a saved token and it's still valid
     const token = this.getToken();
     return !!token && !this.isTokenExpired(token);
   }
-
-  // Verifies whether a token has expired or not by comparing its expiration date with the current date.
   isTokenExpired(token) {
     try {
       const decoded = decode(token);
@@ -23,19 +19,16 @@ class AuthService {
       return false;
     }
   }
-
   getToken() {
     // Retrieves the user token from localStorage
     return localStorage.getItem('id_token');
   }
-
   login(idToken) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
 
     window.location.assign('/');
   }
-
   logout() {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
@@ -45,3 +38,5 @@ class AuthService {
 }
 
 export default new AuthService();
+
+

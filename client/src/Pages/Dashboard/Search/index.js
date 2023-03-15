@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import Autocomplete from 'react-autocomplete';
+import { useCompanyContext } from "../../../utils/companyContext";
+import { QUERY_COMPANY } from '../../../utils/queries';
+import { SAVE_COMPANY } from '../../../utils/mutations';
+import Auth from "../../../utils/auth"
+import { idbPromise } from "../../../utils/helper";
 
-import { QUERY_COMPANY } from '../../utils/queries';
-import { SAVE_COMPANY } from '../../utils/mutations';
-import Auth from "../../utils/auth"
 
 // import './style.css'
 export default function Companies() {
   const [ selectedOption, setSelectedOption] = useState('');
   const [ filteredOptions, setFilteredOptions] = useState([]);
   const { loading, error, data } = useQuery(QUERY_COMPANY);
-
+  const [companyState, dispatch ] = useCompanyContext();  
   const [ saveCompany] = useMutation(SAVE_COMPANY);
 
   const handleChange = (event) => {
@@ -55,16 +57,16 @@ export default function Companies() {
 
   const saveCompanyToUser = (event) => {
     event.preventDefault();
-    console.log("the company selected by user : ", selectedOption)
+    // console.log("the company selected by user : ", selectedOption)
     data.companies.forEach(async el =>  {
       if (selectedOption === el.name ){
         const { __typename, _id, ...newObj} = el
 
-      console.log("data: ", el)
-      console.log("NEW OBJECT THIS IS IT ====>>>: ", newObj)
-      console.log("User_Id : ", Auth.getProfile())
+      // console.log("data: ", el)
+      // console.log("NEW OBJECT THIS IS IT ====>>>: ", newObj)
+      console.log("User Profile : ", Auth.getProfile())
       const user = Auth.getProfile()
-      console.log("the Actual user _id: ", user.data._id)
+      // console.log("the Actual user _id: ", user.data._id)
        try{
         const { data } = await saveCompany({ 
           variables: { 
@@ -76,6 +78,11 @@ export default function Companies() {
        }catch(err)
        {
         // console.log("error fom client", err)
+        console.log("newObj")
+console.log(newObj)
+        dispatch({ type: SAVE_COMPANY, payload: el });
+        const savedCompanies = await idbPromise("get",);
+        idbPromise("put", el);
        }
 
     }
