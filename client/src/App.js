@@ -14,7 +14,7 @@ import Learn from './Pages/Learn';
 import NotFound from './Pages/NotFound';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
-import Companies from './Components/Companies';
+import Companies from './Pages/Dashboard/Search';
 import Nav from './Components/NavBar';
  import { CompanyProvider } from './utils/companyContext.js';
 
