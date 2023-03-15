@@ -53,7 +53,7 @@ function Nav() {
     <header className="flex-row px-1">
       <h1>
         <Link to="/">
-          BumbleBee Investor HQ
+          NewBee Financial 
         </Link>
       </h1>
 

@@ -1,0 +1,46 @@
+section {
+    background-color: #FBB81A;
+    color: #0a1524;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+ p {
+    flex: 1;
+    font-size: 40px;
+    color:#0a1524
+  }
+  .main-text {
+    font-size: 3.2rem;
+    color: #0a1524;
+  }
+  
+  img {
+    order: 2;
+    width: 50%;
+  }
+  
+  @media (max-width: 768px) {
+    .flex-row {
+      flex-direction: column;
+    }
+  
+    img {
+      order: 1;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
+  
