@@ -6,7 +6,7 @@ export default function Learn() {
 
 
   return (
-    <section>
+    <article>
       <h1>Education</h1>
       <table className="education-table">
         <thead>
@@ -76,7 +76,7 @@ export default function Learn() {
           </tbody>
       </table>
       
- </section>
+ </article>
   )
 }
 

@@ -1,0 +1,32 @@
+article {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.598),
+    inset 0px 0px 10px 10px rgba(0, 0, 0, 0.341);
+  padding: 5em;
+  margin-bottom: 10em;
+}
+
+.title {
+  padding: 2em;
+  margin: 2em;
+  text-align: center;
+  font-size: 200%;
+}
+.bee {
+  color: var(--accent);
+}
+
+h2 {
+  font-size: 200%;
+}
+p,
+article li {
+  font-size: 150%;
+}
+article li {
+  list-style: outside;
+}

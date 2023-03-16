@@ -76,17 +76,17 @@ table {
 
 /* Set global link color and hover styles */
 a {
-  color: #1a0dab;
+  color: inherit;
   transition: color 0.2s ease-in-out;
 }
 
 a:hover {
-  color: #0d066d;
+  color: inherit;
 }
 
 /* Set global selection color */
 ::selection {
-  background-color: #1a0dab;
+  background-color: var(--accent);
   color: #ffffff;
 }
 

@@ -16,7 +16,6 @@ export default function List() {
 
   return (
     <div>
-      <h2>Saved Companies:</h2>
       {testData.map((el) => (
         <button key={el.id}>{el.name}</button>
       ))}

@@ -81,15 +81,18 @@ export default function Dashboard () {
     fetchSavedData();
   }, [dispatch]);
 
+  console.log("name", user)
+
   return (
-        <div>
+        <article>
+          <h1>{user.data.username}'s Dashboard</h1>
           <div className="savedCompanies">
             <List/>
           </div>
           
           <Search />
           <Data />
-        </div>
+        </article>
   
   );
 };
