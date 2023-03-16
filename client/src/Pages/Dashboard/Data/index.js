@@ -16,11 +16,14 @@ export default function Data(props) {
   }, []);
 
   const selectedProps = [
-    { label: "Revenue", property: "revenue" },
-    { label: "Cash Flow", property: "cashFlow" },
-    { label: "Earnings", property: "earnings" },
-    { label: "EPS", property: "eps" },
-    { label: "Cash", property: "cash" }
+    { label: "Revenue:", property: "revenue" },
+    { label: "Cash Flow:", property: "cashFlow" },
+    { label: "Net Earnings:", property: "netIncome" },
+    { label: "Earnings Per Share:", property: "eps" },
+    { label: "Cash Balance:", property: "cash" },
+    { label: "Ticker Symbol:", property: "ticker" },
+    { label: "Stock Exchange:", property: "exchange" },
+
   ];
 
   function handleClick() {
@@ -31,7 +34,8 @@ export default function Data(props) {
     <table className="financial-table">
       <thead>
         <tr>
-          <th></th>
+          <th>(In millions, except per share data)</th>
+
           {companies.map(company => (
             <th key={company.name}>{company.name}</th>
           ))}

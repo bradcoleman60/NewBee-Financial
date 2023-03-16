@@ -7,11 +7,29 @@
     text-align: left;
     padding: 8px;
     border-bottom: 1px solid #ddd;
+    text-align: center;
+    
+    
+  }
+
+  .financial-table th:first-child{
+    text-align: left;
+  }
+
+
+  .financial-table td:first-child{
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .financial-table th:not(:first-child) {
+    text-transform: uppercase;
   }
 
   .financial-table th {
     background-color: #f2f2f2;
     font-weight: bold;
+    border: 1px solid black;
   }
 
   .financial-table tbody tr:nth-child(even) {
