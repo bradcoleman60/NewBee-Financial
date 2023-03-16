@@ -16,8 +16,6 @@ export default function List() {
     fetchData();
   }, []);
 
-  console.log(testData.map(el => el.name));
-
   return (    <div>
     <h2>List of Names:</h2>
       {testData.map((el) => (
