@@ -76,15 +76,13 @@ export default function Companies() {
         });
         // console.log("data right after saveCompanyToUser", data)
        }catch(err)
-       {
+       {}
         // console.log("error fom client", err)
         console.log("newObj")
 console.log(newObj)
         dispatch({ type: SAVE_COMPANY, payload: el });
         const savedCompanies = await idbPromise("get",);
         idbPromise("put", el);
-       }
-
     }
   });
 
