@@ -4,8 +4,12 @@ const axios = require("axios");
 //Require Mongoose
 const mongodb = require("mongodb").MongoClient;
 
+
+require('dotenv').config();
+
+console.log(process.env.MONGODB_URI)
 //Connect to DB
-const uri = "mongodb://localhost/financeDB";
+const uri = process.env.MONGODB_URI || "mongodb://localhost/financeDB";
 const client = new mongodb(uri, { useNewUrlParser: true });
 
 //Connect to DB
