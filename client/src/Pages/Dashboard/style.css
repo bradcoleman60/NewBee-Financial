@@ -3,3 +3,14 @@ section {
     padding: 10px;
   }
   
+  button {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    margin: .5em;
+    background-color: white;
+  }
+
+  button:hover {
+    background-color: var(--accent)
+  }

@@ -16,6 +16,7 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Companies from './Pages/Dashboard/Search';
 import Nav from './Components/NavBar';
+import Footer from "./Components/Footer";
  import { CompanyProvider } from './utils/companyContext.js';
 
 const httpLink = createHttpLink({
@@ -74,6 +75,7 @@ function App() {
                 element={<NotFound />} 
               />
             </Routes>
+            <Footer/>
             </CompanyProvider>
         </div>
       </Router>

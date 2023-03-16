@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
+import "./style.css"
 
 const Login = () => {
   
@@ -18,6 +19,7 @@ const Login = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    if (error) return
     try {
       const mutationResponse = await login({
         variables: { email: formState.email, password: formState.password },
@@ -71,7 +73,7 @@ const Login = () => {
             <p className="error-text">The provided credentials are incorrect</p>
           </div>
         ) : null}
-        <div className="flex-row flex-end">
+        <div>
           <button type="submit">Submit</button>
         </div>
       </form>

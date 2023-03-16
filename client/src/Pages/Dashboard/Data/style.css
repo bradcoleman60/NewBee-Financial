@@ -39,3 +39,11 @@
   .financial-table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+
+  .financial-table tbody tr:nth-child(odd) {
+    background-color: #dedcd1;
+  }
+
+  .financial-table tbody tr:hover {
+    background-color: var(--accent)
+  }
