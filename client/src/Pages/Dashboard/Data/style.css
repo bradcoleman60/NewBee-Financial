@@ -22,6 +22,10 @@
     font-weight: bold;
   }
 
+  .financial-table td:first-child{
+    cursor: pointer;
+  }
+
   .financial-table th:not(:first-child) {
     text-transform: uppercase;
   }
