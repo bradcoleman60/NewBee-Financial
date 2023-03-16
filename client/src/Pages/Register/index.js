@@ -42,7 +42,7 @@ function Register(props) {
 
       <h2>Register</h2>
       <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
+        <div>
           <label htmlFor="username">Username:</label>
           <input
             placeholder="Username"
@@ -52,7 +52,7 @@ function Register(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row space-between my-2">
+        <div>
           <label htmlFor="email">Email:</label>
           <input
             placeholder="youremail@test.com"
@@ -62,7 +62,7 @@ function Register(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row space-between my-2">
+        <div>
           <label htmlFor="pwd">Password:</label>
           <input
             placeholder="******"
@@ -72,7 +72,7 @@ function Register(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row flex-end">
+        <div>
           <button type="submit">Submit</button>
         </div>
       </form>

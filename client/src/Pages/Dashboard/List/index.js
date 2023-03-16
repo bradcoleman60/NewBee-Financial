@@ -3,7 +3,6 @@ import React from "react";
 import { idbPromise } from "../../../utils/helper";
 
 export default function List() {
-
   const [testData, setTestData] = React.useState([]);
 
   React.useEffect(() => {
@@ -15,10 +14,12 @@ export default function List() {
     fetchData();
   }, []);
 
-  return (    <div>
-    <h2>List of Names:</h2>
+  return (
+    <div>
+      <h2>Saved Companies:</h2>
       {testData.map((el) => (
         <button key={el.id}>{el.name}</button>
       ))}
-  </div>)
+    </div>
+  );
 }

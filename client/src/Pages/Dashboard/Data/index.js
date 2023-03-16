@@ -34,7 +34,7 @@ export default function Data(props) {
     <table className="financial-table">
       <thead>
         <tr>
-          <th>(In millions, except per share data)</th>
+          <th>(<span>In millions</span>, <span>except per share data</span>)</th>
 
           {companies.map(company => (
             <th key={company.name}>{company.name}</th>
