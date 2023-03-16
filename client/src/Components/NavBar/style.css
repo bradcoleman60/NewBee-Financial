@@ -12,14 +12,14 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 5rem;
 }
 
 .logo {
   position:absolute;
   top: 0.3rem;
   left: 1rem;
-  height: 1.5em;
+  height: 3.5em;
 }
 .logo:hover {
   opacity: 0.7;
