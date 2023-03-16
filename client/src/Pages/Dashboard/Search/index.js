@@ -6,16 +6,16 @@ import { QUERY_COMPANY } from '../../../utils/queries';
 import { SAVE_COMPANY } from '../../../utils/mutations';
 import Auth from "../../../utils/auth"
 import { idbPromise } from "../../../utils/helper";
+import './style.css'
 
 
-// import './style.css'
 export default function Companies() {
   const [ selectedOption, setSelectedOption] = useState('');
   const [ filteredOptions, setFilteredOptions] = useState([]);
   const { loading, error, data } = useQuery(QUERY_COMPANY);
   const [companyState, dispatch ] = useCompanyContext();  
   const [ saveCompany] = useMutation(SAVE_COMPANY);
-
+  const [ isSearching, setIsearching ] = useState('false')
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
 
@@ -88,8 +88,15 @@ console.log(newObj)
 
   }
 
+  function showSearch () {
+    setIsearching(!isSearching)
+
+  } 
+
   return (
     <div>
+      <button onClick={showSearch}>Search Companies</button>
+    <div className={isSearching?  'hidden' : 'show'}>
       <label htmlFor="autocomplete-dropdown">Select a Company to Add to your Listing:</label>
       <Autocomplete
         id="autocomplete-dropdown"
@@ -131,6 +138,7 @@ console.log(newObj)
           Submit
           </button>
           </div>
+    </div>
     </div>
   );
 }

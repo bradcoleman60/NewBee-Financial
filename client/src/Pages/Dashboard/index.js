@@ -45,22 +45,22 @@ export default function Dashboard () {
   // }, [searchLoading, searchError]);
 
 // save company to local storage and state
-const handleSaveCompany = async () => {
-    dispatch({ type: SAVE_COMPANY, payload: companyData });
-    const savedCompanies = await idbPromise("get",);
-    idbPromise.put("savedCompanies", [...savedCompanies, companyData]);
-  };
+// const handleSaveCompany = async () => {
+//     dispatch({ type: SAVE_COMPANY, payload: companyData });
+//     const savedCompanies = await idbPromise("get",);
+//     idbPromise.put("savedCompanies", [...savedCompanies, companyData]);
+//   };
 
-  // remove company from local storage and state
-const handleRemoveCompany = async () => {
-    dispatch({ type: REMOVE_COMPANY, payload: companyData });
-    const savedCompanies = await idbPromise("get",);
+//   // remove company from local storage and state
+// const handleRemoveCompany = async () => {
+//     dispatch({ type: REMOVE_COMPANY, payload: companyData });
+//     const savedCompanies = await idbPromise("get",);
 
-    if (savedCompanies) {
-    const updatedSavedCompanies = savedCompanies.filter((savedCompany) => savedCompany._id !== companyData._id);
-    idbPromise("put", updatedSavedCompanies);
-    }
-  };
+//     if (savedCompanies) {
+//     const updatedSavedCompanies = savedCompanies.filter((savedCompany) => savedCompany._id !== companyData._id);
+//     idbPromise("put", updatedSavedCompanies);
+//     }
+//   };
 
   useEffect(() => {
     // fetch saved company data on initial render
@@ -81,19 +81,12 @@ const handleRemoveCompany = async () => {
     fetchSavedData();
   }, [dispatch]);
 
-//   useEffect(() => {
-//     // update idbPromise with saved company data
-//     idbPromise.put("savedCompanies", savedCompanies);
-//   }, [savedCompanies]);
-
-    // Render search form and company data components
   return (
         <div>
           <div className="savedCompanies">
             <List/>
           </div>
-          <button onClick={handleSaveCompany}>Save Company</button>
-          <button onClick={handleRemoveCompany}>Remove Company</button>
+          
           <Search />
           <Data />
         </div>
