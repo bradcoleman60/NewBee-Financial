@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useCompanyContext } from "../../utils/companyContext";
 import { SAVE_COMPANY, REMOVE_COMPANY } from "../../utils/actions";
 import Data from "./Data";
-import Articles from "./Articles";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from '../../utils/queries'
 import "./style.css";
@@ -97,7 +96,6 @@ const handleRemoveCompany = async () => {
           <button onClick={handleRemoveCompany}>Remove Company</button>
           <Search />
           <Data />
-          <Articles />
         </div>
   
   );
