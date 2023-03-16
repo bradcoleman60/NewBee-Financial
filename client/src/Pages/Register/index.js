@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
 import { CREATE_USER } from '../../utils/mutations';
+import "./style.css"
 
 function Register(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -42,7 +43,7 @@ function Register(props) {
 
       <h2>Register</h2>
       <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
+        <div>
           <label htmlFor="username">Username:</label>
           <input
             placeholder="Username"
@@ -52,7 +53,7 @@ function Register(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row space-between my-2">
+        <div>
           <label htmlFor="email">Email:</label>
           <input
             placeholder="youremail@test.com"
@@ -62,7 +63,7 @@ function Register(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row space-between my-2">
+        <div>
           <label htmlFor="pwd">Password:</label>
           <input
             placeholder="******"
@@ -72,7 +73,7 @@ function Register(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row flex-end">
+        <div>
           <button type="submit">Submit</button>
         </div>
       </form>
