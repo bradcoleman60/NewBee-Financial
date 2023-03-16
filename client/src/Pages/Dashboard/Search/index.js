@@ -83,8 +83,6 @@ console.log(newObj)
         dispatch({ type: SAVE_COMPANY, payload: el });
         const savedCompanies = await idbPromise("get",);
         idbPromise("put", el);
-       
-
     }
   });
 
