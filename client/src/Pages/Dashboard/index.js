@@ -8,7 +8,7 @@ import { QUERY_USER } from '../../utils/queries'
 import "./style.css";
 import { idbPromise } from "../../utils/helper";
 import Search from "./Search"
-// import List from './List'
+import List from './List'
 import Auth from "../../utils/auth"
 
 export default function Dashboard () {
@@ -91,6 +91,7 @@ const handleRemoveCompany = async () => {
   return (
         <div>
           <div className="savedCompanies">
+            <List/>
           </div>
           <button onClick={handleSaveCompany}>Save Company</button>
           <button onClick={handleRemoveCompany}>Remove Company</button>
