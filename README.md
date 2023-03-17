@@ -6,7 +6,7 @@
 
 NewBee Financial is an application that educates the beginner investor in understanding key financial metrics of major public companies in the United States.
 
-[Link to the live app](https://fierce-plains-86350.herokuapp.com/)
+[Link to the live app](https://infinite-wildwood-67913.herokuapp.com/)
 
 
 ![./client/src/Pages/Home/images/newBeeDeploy.gif](./client/src/Pages/Home/images/newBeeDeploy.gif)
