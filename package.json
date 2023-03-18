@@ -10,6 +10,7 @@
     "start": "node server/server.js --ignore client",
     "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "seed": "cd server && npm run seed",
+    "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
     "heroku-postbuild": "cd client && npm run build"
   },

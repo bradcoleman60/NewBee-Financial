@@ -57,6 +57,7 @@ export default function Companies() {
 
   const saveCompanyToUser = (event) => {
     event.preventDefault();
+    
     // console.log("the company selected by user : ", selectedOption)
     data.companies.forEach(async el =>  {
       if (selectedOption === el.name ){
@@ -83,7 +84,10 @@ export default function Companies() {
         dispatch({ type: SAVE_COMPANY, payload: el });
         const savedCompanies = await idbPromise("get",);
         idbPromise("put", el);
+        window.location.reload();
+
     }
+
   });
 
   }
